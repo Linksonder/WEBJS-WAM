@@ -15,6 +15,9 @@
 </head>
 <body>
 
+    <h3>Wack a Mole!</h3>
+    <h4>Points: <span id="points"></span></h4>
+
     <table>
         <tr>
             <td id="11"></td>
@@ -50,6 +53,8 @@
     document.getElementById("22").append(holes[2]); 
     document.getElementById("31").append(holes[3]); 
     document.getElementById("33").append(holes[4]); 
+
+    var points = document.getElementById("points");
    
     GameLoop();
     var punten = 0;
@@ -62,15 +67,21 @@
         btn.innerText = "..(o.0)..";
         btn.addEventListener("click", function(){
             punten++;
+            points.innerHTML = punten;
             holes[index].removeChild(btn);
         })
 
+        setTimeout(() => {
+            holes[index].removeChild(btn);
+        }, 1000);
+
         holes[index].append(btn);
-        setTimeout(GameLoop, 3000);
+        setTimeout(GameLoop, (Math.random() * 2000) + 2000);
     }
 
     function GenerateRandomIndex(max){
         return Math.round(Math.random() * max); //0.001 /2.4 ?
     }
+
 
 </script>
