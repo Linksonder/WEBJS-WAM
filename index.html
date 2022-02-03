@@ -51,4 +51,26 @@
     document.getElementById("31").append(holes[3]); 
     document.getElementById("33").append(holes[4]); 
    
+    GameLoop();
+    var punten = 0;
+
+    function GameLoop(){
+        var index = GenerateRandomIndex(4);
+
+        var btn = document.createElement("button");
+        btn.className = "mole";
+        btn.innerText = "..(o.0)..";
+        btn.addEventListener("click", function(){
+            punten++;
+            holes[index].removeChild(btn);
+        })
+
+        holes[index].append(btn);
+        setTimeout(GameLoop, 3000);
+    }
+
+    function GenerateRandomIndex(max){
+        return Math.round(Math.random() * max); //0.001 /2.4 ?
+    }
+
 </script>
